@@ -1,0 +1,10 @@
+bin/
+include/
+lib/
+.DS_STORE
+.Python
+*.py[cod]
+.vscode
+env/
+env
+.env
