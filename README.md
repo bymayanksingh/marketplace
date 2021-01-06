@@ -18,10 +18,6 @@
 ## About
 This is a REST API on Plant Nursery Marketplace, it supports adding/removing a plant to the cart and making purchase, it also supports viewing orders, I have also added documentation for this API using swagger open API specification, after running the server visit http://127.0.0.1:8000/docs/ to view the documentation.
 
-## Flow
-
-- some text missing
-
 
 ### Installation
 

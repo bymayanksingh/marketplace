@@ -36,7 +36,8 @@ class CartViewSet(viewsets.ModelViewSet):
         try:
             plant = Plant.objects.get(pk=request.data["plant_id"])
             quantity = int(request.data["quantity"])
-        except:
+        except Exception as e:
+            print(e)
             return Response({"status": "fail"})
 
         if plant.available_inventory <= 0 or plant.available_inventory - quantity < 0:
@@ -58,12 +59,14 @@ class CartViewSet(viewsets.ModelViewSet):
         cart = self.get_object()
         try:
             plant = Plant.objects.get(pk=request.data["plant_id"])
-        except:
+        except Exception as e:
+            print(e)
             return Response({"status": "fail"})
 
         try:
             cart_item = CartItem.objects.get(cart=cart, plant=plant)
-        except:
+        except Exception as e:
+            print(e)
             return Response({"status": "fail"})
 
         if cart_item.quantity == 1:
@@ -89,7 +92,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         try:
             purchaser_id = self.request.data["customer"]
             user = User.objects.get(pk=purchaser_id)
-        except:
+        except Exception as e:
+            print(e)            
             raise serializers.ValidationError("User was not found")
 
         cart = user.cart
@@ -137,7 +141,8 @@ class OrderViewSet(viewsets.ModelViewSet):
         try:
             user = User.objects.get(id=customer_id)
 
-        except:
+        except Exception as e:
+            print(e)            
             return Response({"status": "fail"})
 
         orders = Order.objects.filter(customer=user)
