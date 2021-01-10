@@ -1,63 +1,30 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from plants.models import (Cart, CartItem, Category, Order, OrderItem, Plant,
-                           User)
-
-
-class PlantSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Plant
-        fields = ["id", "name", "description", "price", "category", "inventory"]
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ["id", "name", "description"]
+from plants.models import  Orders, Plant
 
 
 class UserSerializer(serializers.ModelSerializer):
+    plants = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ("username", "email", "handle")
+        fields = ("id", "username", "email", "password", "products")
+        extra_kwargs = {"password": {"write_only": True}}
 
 
-class CartSerializer(serializers.ModelSerializer):
-    customer = UserSerializer(read_only=True)
-    items = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Cart
-        fields = ("id", "customer", "created_at", "updated_at", "items")
-
-
-class CartItemSerializer(serializers.ModelSerializer):
-
-    cart = CartSerializer(read_only=True)
-    plant = PlantSerializer(read_only=True)
+class PlantSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
-        model = CartItem
-        fields = ("id", "cart", "plant", "quantity")
+        model = Plant
+        fields = "__all__"
 
 
-class OrderSerializer(serializers.ModelSerializer):
-    customer = UserSerializer(read_only=True)
-    order_items = serializers.StringRelatedField(many=True, required=False)
 
-    class Meta:
-        model = Order
-        fields = ("id", "customer", "total", "created_at", "updated_at", "order_items")
-
-    def create(self, validated_data):
-        order = Order.objects.create(**validated_data)
-        return order
-
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    order = OrderSerializer(read_only=True)
-    plant = PlantSerializer(read_only=True)
+class OrdersSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
-        model = OrderItem
-        fields = ("id", "order", "plant", "quantity")
+        model = Orders
+        fields = "__all__"
