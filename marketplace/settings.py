@@ -19,14 +19,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in plantion secret!
-SECRET_KEY ="q@j^xlp9hgwyy*22ane^p+wi=l$a96+3f%3pqj%8kym!hym+t8"
+SECRET_KEY = "q@j^xlp9hgwyy*22ane^p+wi=l$a96+3f%3pqj%8kym!hym+t8"
 
 # SECURITY WARNING: don't run with debug turned on in plantion!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-AUTH_USER_MODEL = "plants.User"
 
 
 # Application definition
@@ -38,9 +36,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "rest_framework",
-    'rest_framework_swagger',
-    'drf_yasg',
+    "rest_framework_swagger",
+    "drf_yasg",
     "plants",
 ]
 
@@ -52,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "backend.middleware.dev_cors_middleware",
 ]
 
 ROOT_URLCONF = "marketplace.urls"
@@ -75,13 +75,25 @@ TEMPLATES = [
 WSGI_APPLICATION = "marketplace.wsgi.application"
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAdminUser"]
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+    )
 }
+
+JWT_AUTH = {"JWT_ALLOW_REFRESH": True}
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "plant_marketplace",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "",
+    }
 }
 
 
