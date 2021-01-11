@@ -18,7 +18,7 @@
 
 
 ## About
-This is a REST API on Plant Nursery Marketplace, it supports adding/removing a plant to the cart and making purchase, it also supports viewing orders, here nurseries can act as sellers as well as buyers i.e. they can place orders as well as maintain their own catalouge of plants to sell, I've used JsonWebTokens based authentication scheme in this API along with some custom permissions to allow the views to be protected accordingly, I have also added a documentation for this API using swagger open API specification, after running the server visit http://127.0.0.1:8000/docs/ to view the documentation, to know the flow for testing the API visit API.md file in this repo, the database used is PostgreSQL.
+This is a REST API on Plant Nursery Marketplace, it supports adding/removing a plant to the cart and making purchase, it also supports viewing orders, here users can act as sellers as well as buyers i.e. they can place orders as well as maintain their own catalouge of plants to sell, I've used JsonWebTokens based authentication scheme in this API along with some custom permissions to allow the views to be protected accordingly, I have also added a documentation for this API using swagger open API specification, after running the server visit http://127.0.0.1:8000/docs/ to view the documentation, to know the flow for testing the API visit API.md file in this repo, the database used is PostgreSQL.
 
 
 ### Flow
