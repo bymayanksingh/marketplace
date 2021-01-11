@@ -81,6 +81,8 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {"JWT_ALLOW_REFRESH": True}
 
+
+SITE_ID = 1
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 

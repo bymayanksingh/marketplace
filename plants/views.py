@@ -4,11 +4,8 @@ from rest_framework import permissions, viewsets
 
 from plants.models import Orders, Plant
 from plants.permissions import IsOwnerOrReadOnly, IsStaffOrTargetUser
-from plants.serializers import (
-    OrdersSerializer,
-    PlantSerializer,
-    UserSerializer,
-)
+from plants.serializers import (OrdersSerializer, PlantSerializer,
+                                UserSerializer)
 
 
 class PlantViewSet(viewsets.ModelViewSet):
@@ -19,7 +16,6 @@ class PlantViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
 
 
 class OrdersViewSet(viewsets.ModelViewSet):
@@ -41,7 +37,6 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
     def get_permissions(self):
-        # allow non-authenticated user to create via POST
         return (
             (
                 permissions.AllowAny()

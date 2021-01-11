@@ -1,4 +1,4 @@
-# Plant Nursery Marketplace API
+# Plant Nursery B2B Marketplace API
 
 ![Made with Python](https://img.shields.io/badge/Made%20with-Python-blueviolet?style=for-the-badge&images=python)  ![Open Source Love](https://img.shields.io/badge/Open%20Source-%E2%99%A5-red?style=for-the-badge&images=open-source-initiative)  ![Built with Love](https://img.shields.io/badge/Built%20With-%E2%99%A5-critical?style=for-the-badge&images=ko-fi)  
 
@@ -18,7 +18,7 @@
 
 
 ## About
-This is a REST API on Plant Nursery Marketplace, it supports adding/removing a plant to the cart and making purchase, it also supports viewing orders, I have also added documentation for this API using swagger open API specification, after running the server visit http://127.0.0.1:8000/docs/ to view the documentation.
+This is a REST API on Plant Nursery B2B Marketplace, it supports adding/removing a plant to the cart and making purchase, it also supports viewing orders, here nurseries can act as sellers as well as buyers i.e. they can place orders as well as maintain their own catalouge of plants to sell, I've used JsonWebTokens based authentication scheme in this API along with some custom permissions to allow the views to be protected accordingly, I have also added a documentation for this API using swagger open API specification, after running the server visit http://127.0.0.1:8000/docs/ to view the documentation, to know the flow for testing the API visit API.md file in this repo, the database used is PostgreSQL.
 
 
 ### Flow

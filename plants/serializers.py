@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from plants.models import  Orders, Plant
+from plants.models import Orders, Plant
+
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ("id", "username", "email", "password")
@@ -16,8 +16,16 @@ class PlantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Plant
-        fields = ("id", "name", "description", "price", "category", "quantity", "img_url", "owner")
-
+        fields = (
+            "id",
+            "name",
+            "description",
+            "price",
+            "category",
+            "quantity",
+            "img_url",
+            "owner",
+        )
 
 
 class OrdersSerializer(serializers.ModelSerializer):
@@ -25,4 +33,11 @@ class OrdersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Orders
-        fields = ("date", "plants", "quantities", "total_price", "payment_method", "owner")
+        fields = (
+            "date",
+            "plants",
+            "quantities",
+            "total_price",
+            "payment_method",
+            "owner",
+        )
