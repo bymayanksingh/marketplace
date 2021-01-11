@@ -51,7 +51,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "backend.middleware.dev_cors_middleware",
 ]
 
 ROOT_URLCONF = "marketplace.urls"

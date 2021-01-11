@@ -3,13 +3,11 @@ from rest_framework import serializers
 
 from plants.models import  Orders, Plant
 
-
 class UserSerializer(serializers.ModelSerializer):
-    plants = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password", "products")
+        fields = ("id", "username", "email", "password")
         extra_kwargs = {"password": {"write_only": True}}
 
 
@@ -18,7 +16,7 @@ class PlantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Plant
-        fields = "__all__"
+        fields = ("id", "name", "description", "price", "category", "quantity", "img_url", "owner")
 
 
 
@@ -27,4 +25,4 @@ class OrdersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Orders
-        fields = "__all__"
+        fields = ("date", "plants", "quantities", "total_price", "payment_method", "owner")
