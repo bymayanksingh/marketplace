@@ -92,8 +92,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "plant_marketplace",
-        "USER": "",
-        "PASSWORD": "",
+        "USER": "codemonk",
+        "PASSWORD": "password",
         "HOST": "localhost",
         "PORT": "",
     }
